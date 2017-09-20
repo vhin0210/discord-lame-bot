@@ -1,0 +1,12 @@
+{
+  "name": "lame-bot",
+  "version": "1.0.0",
+  "description": "Lame bot for Discord",
+  "main": "bot.js",
+  "author": "Mark Cristobal",
+  "dependencies": {
+    "discord.io": "^2.5.2",
+    "https": "^1.0.0",
+    "winston": "^2.3.1"
+  }
+}
