@@ -1,19 +1,19 @@
 # discord-lame-bot
-#Lame bot for Discord
+# Lame bot for Discord
 
-##Installation
+## Installation
 In terminal, navigate to the root folder and run:
 ```
 npm install
 ```
 
-##Run
+## Run
 Once installed, in terminal, navgiate to the root folder and run:
 ```
 node bot.js
 ```
 
-##Usage
+## Usage
 Active the bot on your Discord server
 https://discordapp.com/oauth2/authorize?&client_id=359263674096943105&scope=bot&permissions=0
 
