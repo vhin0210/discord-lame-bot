@@ -24,13 +24,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-       
+
         args = args.splice(1);
         switch(cmd) {
             // !lame
             case 'lame-joke':
 
-                var offset = Math.floor(Math.random() * 100);
+                var offset = Math.floor(Math.random() * 500);
                 https.get('https://lamejokes.org/feeds/getjokes.php?count=1&offset=' + offset + '&sort=alltime', (res) => {
                   console.log('statusCode:', res.statusCode);
                   console.log('headers:', res.headers);
@@ -40,10 +40,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                     var jokeData = JSON.parse(d);
 
-                    bot.sendMessage({
-                        to: channelID,
-                        message: "Question: " + jokeData[0].question + "\n\n\n" + "Answer: " + jokeData[0].punch
-                    });
+                    if (jokeData[0].question == null || jokeData[0].question.trim() == '') {
+                      bot.sendMessage({
+                          to: channelID,
+                          message: jokeData[0].punch
+                      });
+                    } else {
+                      bot.sendMessage({
+                          to: channelID,
+                          message: "Question: " + jokeData[0].question + "\n\n\n" + "Answer: " + jokeData[0].punch
+                      });
+                    }
                   });
 
                 }).on('error', (e) => {
