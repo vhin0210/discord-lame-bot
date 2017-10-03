@@ -1,6 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var replies = require('./replies.json');
 var https = require('https');
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -27,7 +28,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         args = args.splice(1);
         switch(cmd) {
-            // !lame
+            // !lame-joke
             case 'lame-joke':
 
                 var offset = Math.floor(Math.random() * 500);
@@ -58,6 +59,36 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 });
             break;
             // Just add any case commands if you want to..
+
+            // !lame-bot
+            case 'lame-bot':
+              if (typeof args[0] != 'undefined') {
+                var laughs = args[0].split('ha');
+
+                var replyIndex = 0;
+                var replyType = null;
+                if (laughs.length == 2) {
+                  replyType = replies.replies.mad;
+                }
+                if (laughs.length == 3) {
+                  replyType = replies.replies.sarcastic;
+                }
+                if (laughs.length >= 4) {
+                  replyType = replies.replies.ok;
+                }
+                replyIndex = Math.floor(Math.random() * replyType.length);
+
+                bot.sendMessage({
+                    to: channelID,
+                    message: replyType[replyIndex]
+                });
+              } else {
+                bot.sendMessage({
+                    to: channelID,
+                    message: "What's up?"
+                });
+              }
+              break;
          }
      }
 });

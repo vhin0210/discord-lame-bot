@@ -1,0 +1,23 @@
+{
+    "replies": {
+        "mad": [
+            "What!?",
+            "You don't like it?!",
+            "FU! Hahaha!",
+            "K"
+        ],
+        "sarcastic": [
+            "Yeah right...",
+            "Thanks, but no thanks",
+            "Seriously?",
+            "K",
+            "K Thx Bye"
+        ],
+        "ok": [
+            "I knew you'll like it :)",
+            "Gotcha!",
+            "I'm glad you liked it!",
+            "I know, right?!"
+        ]
+    }
+}
