@@ -5,7 +5,7 @@
   "main": "bot.js",
   "author": "Mark Cristobal",
   "dependencies": {
-    "discord.io": "^2.5.2",
+    "discord.io": "github:woor/discord.io#gateway_v6",
     "https": "^1.0.0",
     "winston": "^2.3.1"
   }
