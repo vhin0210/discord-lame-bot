@@ -31,64 +31,79 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !lame-joke
             case 'lame-joke':
 
-                var offset = Math.floor(Math.random() * 500);
-                https.get('https://lamejokes.org/feeds/getjokes.php?count=1&offset=' + offset + '&sort=alltime', (res) => {
-                  console.log('statusCode:', res.statusCode);
-                  console.log('headers:', res.headers);
-
-                  res.on('data', (d) => {
-                    process.stdout.write(d);
-
-                    var jokeData = JSON.parse(d);
-
-                    if (jokeData[0].question == null || jokeData[0].question.trim() == '') {
-                      bot.sendMessage({
-                          to: channelID,
-                          message: jokeData[0].punch
-                      });
-                    } else {
-                      bot.sendMessage({
-                          to: channelID,
-                          message: "Question: " + jokeData[0].question + "\n\n\n" + "Answer: " + jokeData[0].punch
-                      });
-                    }
-                  });
-
-                }).on('error', (e) => {
-                  console.error(e);
-                });
+                
             break;
             // Just add any case commands if you want to..
 
             // !lame-bot
             case 'lame-bot':
               if (typeof args[0] != 'undefined') {
-                var laughs = args[0].split('ha');
+                switch(args[0]) {
+                  case 'help':
+                    bot.sendMessage({
+                        to: channelID,
+                        message: "!lame-bot joke"
+                    });
 
-                var replyIndex = 0;
-                var replyType = null;
-                if (laughs.length == 2) {
-                  replyType = replies.replies.mad;
-                }
-                if (laughs.length == 3) {
-                  replyType = replies.replies.sarcastic;
-                }
-                if (laughs.length >= 4) {
-                  replyType = replies.replies.ok;
-                }
-                replyIndex = Math.floor(Math.random() * replyType.length);
+                  case 'tell a joke':
+                  case 'joke':
+                    var offset = Math.floor(Math.random() * 500);
+                    https.get('https://lamejokes.org/feeds/getjokes.php?count=1&offset=' + offset + '&sort=alltime', (res) => {
+                      console.log('statusCode:', res.statusCode);
+                      console.log('headers:', res.headers);
 
-                bot.sendMessage({
-                    to: channelID,
-                    message: replyType[replyIndex]
-                });
-              } else {
-                bot.sendMessage({
-                    to: channelID,
-                    message: "What's up?"
-                });
+                      res.on('data', (d) => {
+                        process.stdout.write(d);
+
+                        var jokeData = JSON.parse(d);
+
+                        if (jokeData[0].question == null || jokeData[0].question.trim() == '') {
+                          bot.sendMessage({
+                              to: channelID,
+                              message: jokeData[0].punch
+                          });
+                        } else {
+                          bot.sendMessage({
+                              to: channelID,
+                              message: "*" + jokeData[0].question + "*\n\n\n" + "**" + jokeData[0].punch + "**"
+                          });
+                        }
+                      });
+
+                    }).on('error', (e) => {
+                      console.error(e);
+                    });
+
+                  default:
+                    var laughs = args[0].split('ha');
+
+                    var replyIndex = 0;
+                    var replyType = null;
+                    if (laughs.length == 2) {
+                      replyType = replies.replies.mad;
+                    }
+                    if (laughs.length == 3) {
+                      replyType = replies.replies.sarcastic;
+                    }
+                    if (laughs.length >= 4) {
+                      replyType = replies.replies.ok;
+                    }
+                    replyIndex = Math.floor(Math.random() * replyType.length);
+
+                    bot.sendMessage({
+                        to: channelID,
+                        message: replyType[replyIndex]
+                    });
+                    break;
+
+                } else {
+                  bot.sendMessage({
+                      to: channelID,
+                      message: "What's up?"
+                  });
+                }
+                break;
               }
-              break;
          }
      }
 });
