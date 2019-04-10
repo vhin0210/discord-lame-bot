@@ -19,7 +19,9 @@ https://discordapp.com/oauth2/authorize?&client_id=359263674096943105&scope=bot&
 
 And use this command in your channel:
 ```
-!lame-joke
+!lame-bot help
+!lame-bot joke
+!lame-bot haha
 ```
 
 
