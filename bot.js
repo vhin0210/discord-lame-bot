@@ -30,9 +30,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !lame-joke
             case 'lame-joke':
-
-                
-            break;
+              break;
+            
             // Just add any case commands if you want to..
 
             // !lame-bot
@@ -44,6 +43,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         to: channelID,
                         message: "!lame-bot joke"
                     });
+                    break;
 
                   case 'tell a joke':
                   case 'joke':
@@ -72,7 +72,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                     }).on('error', (e) => {
                       console.error(e);
-                    }); 
+                    });
+                    break;
 
                   default:
                     var laughs = args[0].split('ha');
@@ -105,6 +106,5 @@ bot.on('message', function (user, userID, channelID, message, evt) {
               }
               break;
         }
-      }
-  }
+    }
 });
