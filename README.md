@@ -15,7 +15,7 @@ node bot.js
 
 ## Usage
 Active the bot on your Discord server
-https://discordapp.com/oauth2/authorize?&client_id=359263674096943105&scope=bot&permissions=0
+https://discordapp.com/oauth2/authorize?&client_id=565475334930038785&scope=bot&permissions=0
 
 And use this command in your channel:
 ```
