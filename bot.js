@@ -72,7 +72,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                     }).on('error', (e) => {
                       console.error(e);
-                    });
+                    }); 
 
                   default:
                     var laughs = args[0].split('ha');
@@ -95,15 +95,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         message: replyType[replyIndex]
                     });
                     break;
-
-                } else {
-                  bot.sendMessage({
-                      to: channelID,
-                      message: "What's up?"
-                  });
                 }
-                break;
+
+              } else {
+                bot.sendMessage({
+                    to: channelID,
+                    message: "What's up?"
+                });
               }
-         }
-     }
+              break;
+        }
+      }
+  }
 });
